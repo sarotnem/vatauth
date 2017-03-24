@@ -1,0 +1,49 @@
+{
+    "name": "theomessin/vatauth",
+    "description": "A Laravel 5.4 package to handle VATSIM authentication",
+    "keywords": [
+        "laravel",
+        "vatsim",
+        "auth",
+        "authentication",
+        "sso",
+        "oauth",
+        "single",
+        "sign",
+        "on"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kieran Hardern",
+            "email": "kieran@hardern.net"
+        },
+        {
+            "name": "Roy de Vos Burchart",
+            "email": "dev@bonroyage.com",
+            "homepage": "http://www.bonroyage.com"
+        },
+        {
+          "name": "Sebastian Kramer",
+          "email": "sebastian@jskramer.de"
+        },
+		{
+		  "name": "Theodore Messinezis",
+		  "email": "theo@theomessin.com"
+		}
+    ],
+    "support": {
+        "issues": "https://github.com/theomessin/vatauth/issues"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.*",
+        "illuminate/container": "5.*",
+        "bonroyage/oauth": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Theomessin\\Vatauth\\": "src/"
+        }
+    }
+}
