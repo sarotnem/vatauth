@@ -15,8 +15,14 @@ return [
     |
     */
     'redirect' => [
-        'type' => 'url',
-        'to' => '/home'
+        'afterLogin' => [
+            'type' => 'url',
+            'to' => '/home'
+        ],
+        'afterLogout' => [
+            'type' => 'url',
+            'to' => '/'
+        ]
     ],
 
     /*
