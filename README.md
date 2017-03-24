@@ -66,7 +66,9 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
     {
         use Notifiable. VatsimSynchronisable;
     ```
-  
+    
+    Also, make sure you add the `id` attribute in the `$fillable` array, and remove the password from the `$fillable` and `$hidden` array.
+
   ### Configuration
   Go over the `vatauth.php` configuration file to see what you should set.
   
