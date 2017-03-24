@@ -4,7 +4,7 @@ namespace Theomessin\Vatauth;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Theomessin\Vatauth\Repository\SSO as Vatauth;
+use Theomessin\Vatauth\Repository\SSO as Vatsso;
 
 class VatauthServiceProvider extends ServiceProvider
 {
@@ -39,8 +39,8 @@ class VatauthServiceProvider extends ServiceProvider
 		);
 
 
-		$this->app->bind(Vatauth::class, function($app){
-			return new Vatauth(
+		$this->app->bind(Vatsso::class, function($app){
+			return new Vatsso(
 				config('vatauth.server'),
 				config('vatauth.key'),
 				config('vatauth.secret'),
@@ -57,7 +57,7 @@ class VatauthServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return [Vatauth::class];
+		return [Vatsso::class];
 	}
 
 }

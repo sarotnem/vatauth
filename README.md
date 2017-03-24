@@ -55,7 +55,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
        */
       protected $policies = [
           'App\Model' => 'App\Policies\ModelPolicy',
-      ];
+      ];7
 
       /**
        * Register any authentication / authorization services.
