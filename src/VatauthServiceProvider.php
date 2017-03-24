@@ -38,7 +38,6 @@ class VatauthServiceProvider extends ServiceProvider
 			__DIR__.'/../config/vatauth.php', 'vatauth'
 		);
 
-		$cert = File::exists(storage_path('app/cert.key')) ? File::get(storage_path('app/cert.key')) : File::get(__DIR__.'/../storage/app/cert.key');
 
 		$this->app->bind(Vatauth::class, function($app){
 			return new Vatauth(
@@ -46,7 +45,7 @@ class VatauthServiceProvider extends ServiceProvider
 				config('vatauth.key'),
 				config('vatauth.secret'),
 				config('vatauth.method'),
-				$cert
+				File::exists(storage_path('app/cert.key')) ? File::get(storage_path('app/cert.key')) : File::get(__DIR__.'/../storage/app/cert.key')
 			);
 		});
 	}
