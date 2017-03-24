@@ -1,6 +1,6 @@
 <?php 
 
-namespace Theomessin\Repository\Vatauth;
+namespace Theomessin\Vatauth\Repository;
 
 use Eher\OAuth\RsaSha1 as BaseRsaSha1;
 use Eher\OAuth\OAuthException;

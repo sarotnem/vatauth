@@ -2,9 +2,9 @@
 
 namespace Theomessin\Vatauth;
 
-use Storage;
-use Theomessin\Vatauth\Repository\SSO;
+use File;
 use Illuminate\Support\ServiceProvider;
+use Theomessin\Vatauth\Repository\SSO as Vatauth;
 
 class VatauthServiceProvider extends ServiceProvider
 {
@@ -38,11 +38,11 @@ class VatauthServiceProvider extends ServiceProvider
 			__DIR__.'/../config/vatauth.php', 'vatauth'
 		);
 
-		$cert = Storage::exists(storage_path('app/cert.key')) ? Storage::get(storage_path('app/cert.key')) : Storage::exists(__DIR__.'/../storage/app/cert.key');
+		$cert = File::exists(storage_path('app/cert.key')) ? File::get(storage_path('app/cert.key')) : File::get(__DIR__.'/../storage/app/cert.key');
 
-		$this->app->bind('vatauth', function($app){
-			return new SSO(
-				config('vatauth.base'),
+		$this->app->bind(Vatauth::class, function($app){
+			return new Vatauth(
+				config('vatauth.server'),
 				config('vatauth.key'),
 				config('vatauth.secret'),
 				config('vatauth.method'),
@@ -58,7 +58,7 @@ class VatauthServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return [SSO::class];
+		return [Vatauth::class];
 	}
 
 }

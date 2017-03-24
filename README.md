@@ -5,7 +5,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
 ## Installation
 
 - ### Composer
-  Simply run `composer require theomessin\vatauth` to install the latest version of this package
+  Simply run `composer require theomessin/vatauth` to install the latest version of this package
 
 - ### Laravel Setup
   There are several things that need to be done for this package to work:
@@ -18,7 +18,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
   #### Configuration
   Run the following command to publish the default `vatauth.php` configuration file:
   ```
-  php artisan vendor:publish --provider="Theomessin\Vatauth\VatauthServiceProvider" --tag="config"
+  php artisan vendor:publish --provider="Theomessin\Vatauth\VatauthServiceProvider"
   ```
 
   #### Migrations
@@ -38,7 +38,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
   You will only need three routes for authentication:
   
   ```php
-  Route::get('login', 'Auth\LoginController@login')->name('login');
+  Route::get('login', 'Auth\LoginController@fire')->name('login');
   Route::get('login/handle', 'Auth\LoginController@handle')->name('handle');
   Route::post('logout', 'Auth\LoginController@logout')->name('logout');
   ```
@@ -50,7 +50,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
   - `viaVatsim` to your `LoginController.php` controller:
   
     ```php
-    use Theomessin\Vatauth\Tratis\viaVatsim;
+    use Theomessin\Vatauth\Traits\viaVatsim;
   
     class LoginController extends Controller
     {
@@ -60,7 +60,7 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
   - `VatsimSynchronisable` to your `User.php` model:
   
     ```php
-    use Theomessin\Vatauth\Tratis\VatsimSynchronisable;
+    use Theomessin\Vatauth\Traits\VatsimSynchronisable;
     
     class User extends Authenticatable
     {

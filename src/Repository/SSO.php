@@ -1,6 +1,6 @@
 <?php 
 
-namespace Theomessin\Repository\Vatauth;
+namespace Theomessin\Vatauth\Repository;
 
 use Closure, Exception, InvalidArgumentException;
 use Illuminate\Container\Container;
