@@ -35,9 +35,8 @@ class VatauthServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->mergeConfigFrom(
-			__DIR__.'/../config/vatauth.php', 'vatauth'
-		);
-
+	        __DIR__.'/../config/vatauth.php', 'vatauth'
+	    );
 
 		$this->app->bind(Vatsso::class, function($app){
 			return new Vatsso(

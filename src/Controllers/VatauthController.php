@@ -12,6 +12,13 @@ class VatauthController extends Controller
     use AuthenticatesUsers, viaVatsim;
 
     /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -21,9 +28,9 @@ class VatauthController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
 
         if (config('vatauth.redirect.type') === 'route') {
-            $this->$redirectTo = route(config('vatauth.redirect.to'));
+            $this->redirectTo = route(config('vatauth.redirect.to'));
         } else if (config('vatauth.redirect.type') === 'url') {
-            $this->$redirectTo = config('vatauth.redirect.to');
+            $this->redirectTo = config('vatauth.redirect.to');
         }
     }
 }
