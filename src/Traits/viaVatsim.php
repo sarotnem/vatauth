@@ -2,8 +2,8 @@
 
 namespace Theomessin\Vatauth\Traits;
 
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Theomessin\Vatauth\Repository\SSO as Vatauth;
 
 trait viaVatsim

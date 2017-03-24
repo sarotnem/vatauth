@@ -4,6 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Redirect After Login
+    |--------------------------------------------------------------------------
+    |
+    | This is where Vatauth should redirect users after they have logged in
+    | successfully using Vatsim SSO. This can either be a URK or a named
+    | Laravel route (change the type setting to reflect this).
+    |
+    | Supported: "url", "route"
+    |
+    */
+    'redirect' => [
+        'type' => 'url',
+        'to' => '/home'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | OAuth SSO Server
     |--------------------------------------------------------------------------
     |

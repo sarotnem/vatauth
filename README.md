@@ -1,4 +1,4 @@
-# VatsimSSO
+# theomessin/vatauth
 
 A package for Laravel 5.4 to handle authentication via Vatsim SSO.
 
@@ -35,39 +35,55 @@ A package for Laravel 5.4 to handle authentication via Vatsim SSO.
     
   #### Routes
   
-  You will only need three routes for authentication:
+  Vatauth will have to register some authentication routes in order to work. To do this, you should call the `Vatauth::routes` method within your `boot` method of your `AuthServiceProvider`:
   
   ```php
-  Route::get('login', 'Auth\LoginController@fire')->name('login');
-  Route::get('login/handle', 'Auth\LoginController@handle')->name('handle');
-  Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+  <?php
+
+  namespace App\Providers;
+
+  use Theomessin\Vatauth\Vatauth;
+  use Illuminate\Support\Facades\Gate;
+  use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
+  class AuthServiceProvider extends ServiceProvider
+  {
+      /**
+       * The policy mappings for the application.
+       *
+       * @var array
+       */
+      protected $policies = [
+          'App\Model' => 'App\Policies\ModelPolicy',
+      ];
+
+      /**
+       * Register any authentication / authorization services.
+       *
+       * @return void
+       */
+      public function boot()
+      {
+          $this->registerPolicies();
+
+          Vatauth::routes();
+      }
+  }
   ```
   
   #### Traits
   
-  Finally, you will have to add the following traits:
+  Finally, you will have to add the `VatsimSynchronisable` trait to your `User.php` model:
+
+  ```php
+  use Theomessin\Vatauth\Traits\VatsimSynchronisable;
   
-  - `viaVatsim` to your `LoginController.php` controller:
+  class User extends Authenticatable
+  {
+      use Notifiable. VatsimSynchronisable;
+  ```
   
-    ```php
-    use Theomessin\Vatauth\Traits\viaVatsim;
-  
-    class LoginController extends Controller
-    {
-        use AuthenticatesUsers, viaVatsim;
-    ```
-    
-  - `VatsimSynchronisable` to your `User.php` model:
-  
-    ```php
-    use Theomessin\Vatauth\Traits\VatsimSynchronisable;
-    
-    class User extends Authenticatable
-    {
-        use Notifiable. VatsimSynchronisable;
-    ```
-    
-    Also, make sure you add the `id` attribute in the `$fillable` array, and remove the password from the `$fillable` and `$hidden` array.
+  Also, make sure you add the `id` attribute in the `$fillable` array, and remove the password from the `$fillable` and `$hidden` array.
 
   ### Configuration
   Go over the `vatauth.php` configuration file to see what you should set.

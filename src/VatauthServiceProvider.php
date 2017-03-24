@@ -2,7 +2,7 @@
 
 namespace Theomessin\Vatauth;
 
-use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Theomessin\Vatauth\Repository\SSO as Vatauth;
 
