@@ -35,8 +35,8 @@ trait viaVatsim
     {
         $callback = function($e) use ($request) {
             $request->session()->forget('vatauth');
-            $user = config('vatauth.users.model')::sync($e);
-            Auth::login($user);
+            config('vatauth.users.model')::sync($e);
+            Auth::loginUsingId($e->id, true);
             return redirect()->intended($this->redirectTo);
         };
         

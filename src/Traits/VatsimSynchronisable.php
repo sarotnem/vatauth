@@ -12,15 +12,11 @@ trait VatsimSynchronisable
      */
     public static function sync(\stdClass $bundle)
     {
-        $user = self::find($bundle->id);
-
-        if ($user === null) {
-            $user = self::create([
-                'id' => $bundle->id,
-                'name' => $bundle->name_first . ' ' . $bundle->name_last,
-                'email' => $bundle->email,
-            ]);
-        }
+        $user = self::updateOrCreate([
+            'id' => $bundle->id,
+            'name' => $bundle->name_first . ' ' . $bundle->name_last,
+            'email' => $bundle->email,
+        ]);
 
         //@todo Synchronise pilot and ATC ratings
         return $user;
