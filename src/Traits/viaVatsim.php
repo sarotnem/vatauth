@@ -33,12 +33,13 @@ trait viaVatsim
      */
     public function handle(Vatauth $vatauth, Request $request)
     {
-        $callback = function($user) use ($request) {
+        $callback = function($e) use ($request) {
             $request->session()->forget('vatauth');
-            Auth::login(config('vatauth.users.model')::sync($user));
+            $user = config('vatauth.users.model')::sync($e);
+            Auth::login($user);
             return redirect()->intended($this->redirectTo);
         };
-
+        
         return $vatauth->validate(session('vatauth.key'), session('vatauth.secret'), $request->input('oauth_verifier'), $callback);
     }
 }
